@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.Objects;
+
 /**
  * Represents moving a chess piece on a chessboard
  * <p>
@@ -8,22 +10,28 @@ package chess;
  */
 public class ChessMove {
 
+    ChessPosition startPosition;
+    ChessPosition endPosition;
+    ChessPiece.PieceType promotionPiece;
     public ChessMove(ChessPosition startPosition, ChessPosition endPosition,
                      ChessPiece.PieceType promotionPiece) {
+        this.startPosition = startPosition;
+        this.endPosition = endPosition;
+        this.promotionPiece = promotionPiece;
     }
 
     /**
      * @return ChessPosition of starting location
      */
     public ChessPosition getStartPosition() {
-        throw new RuntimeException("Not implemented");
+        return this.startPosition;
     }
 
     /**
      * @return ChessPosition of ending location
      */
     public ChessPosition getEndPosition() {
-        throw new RuntimeException("Not implemented");
+        return this.endPosition;
     }
 
     /**
@@ -33,6 +41,33 @@ public class ChessMove {
      * @return Type of piece to promote a pawn to, or null if no promotion
      */
     public ChessPiece.PieceType getPromotionPiece() {
-        throw new RuntimeException("Not implemented");
+        return this.promotionPiece;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s->%s",getStartPosition(),getEndPosition());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        ChessMove toComp = (ChessMove)obj;
+        return this.startPosition.equals(toComp.startPosition) &&
+                this.endPosition.equals(toComp.endPosition) &&
+                this.promotionPiece == toComp.promotionPiece;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getStartPosition(),getEndPosition(),getPromotionPiece());
     }
 }
