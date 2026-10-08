@@ -163,7 +163,7 @@ public class LegalMoveAdder {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.NW),ChessPiece.PieceType.QUEEN));
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.NW),ChessPiece.PieceType.ROOK));
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.NW),ChessPiece.PieceType.BISHOP));
-                        list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.NW),ChessPiece.PieceType.KNIGHT));;
+                        list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.NW),ChessPiece.PieceType.KNIGHT));
                     }
                 }
                 //Black Pawn logic
@@ -196,14 +196,14 @@ public class LegalMoveAdder {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SW),ChessPiece.PieceType.QUEEN));
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SW),ChessPiece.PieceType.ROOK));
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SW),ChessPiece.PieceType.BISHOP));
-                        list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SW),ChessPiece.PieceType.KNIGHT));;
+                        list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SW),ChessPiece.PieceType.KNIGHT));
                     }
                     //Capture SE and promote
                     if (startRow == 2 && startCol < 8) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SE),ChessPiece.PieceType.QUEEN));
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SE),ChessPiece.PieceType.ROOK));
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SE),ChessPiece.PieceType.BISHOP));
-                        list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SE),ChessPiece.PieceType.KNIGHT));;
+                        list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,1,LegalMoveLibrary.diagDir.SE),ChessPiece.PieceType.KNIGHT));
                     }
                 }
                 break;
