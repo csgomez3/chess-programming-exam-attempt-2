@@ -49,61 +49,173 @@ public class LegalMoveAdder {
                 break;
             case ChessPiece.PieceType.QUEEN:
                 for (int dist = 1; dist < 8; dist++) {
-                    if (startRow + dist <= 8) {
+                    //North
+                    if (startRow + dist <= 8 && board.getPiece(new ChessPosition(startRow+dist,startCol)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol)).getTeamColor() == color) {
+                        pathNorthClear = false;
+                    }
+                    if (startRow + dist <= 8 && pathNorthClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.north(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow+dist,startCol)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol)).getTeamColor() != color) {
+                            pathNorthClear = false;
+                        }
                     }
-                    if (startRow - dist >= 1) {
+                    //South
+                    if (startRow - dist >= 1 && board.getPiece(new ChessPosition(startRow-dist,startCol)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol)).getTeamColor() == color) {
+                        pathSouthClear = false;
+                    }
+                    if (startRow - dist >= 1 && pathSouthClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.south(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow-dist,startCol)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol)).getTeamColor() != color) {
+                            pathSouthClear = false;
+                        }
                     }
-                    if (startCol + dist <= 8) {
+                    //East
+                    if (startCol + dist <= 8 && board.getPiece(new ChessPosition(startRow,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow,startCol+dist)).getTeamColor() == color) {
+                        pathEastClear = false;
+                    }
+                    if (startCol + dist <= 8 && pathEastClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.east(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow,startCol+dist)).getTeamColor() != color) {
+                            pathEastClear = false;
+                        }
                     }
-                    if (startCol - dist >= 1) {
+                    //West
+                    if (startCol - dist >= 1 && board.getPiece(new ChessPosition(startRow,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow,startCol-dist)).getTeamColor() == color) {
+                        pathWestClear = false;
+                    }
+                    if (startCol - dist >= 1 && pathWestClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.west(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow,startCol-dist)).getTeamColor() != color) {
+                            pathWestClear = false;
+                        }
                     }
-                    if (startRow + dist <= 8 && startCol + dist <= 8) {
+                    //NE
+                    if (startRow + dist <= 8 && startCol + dist <= 8 && board.getPiece(new ChessPosition(startRow+dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol+dist)).getTeamColor() == color) {
+                        pathNEClear = false;
+                    }
+                    if (startRow + dist <= 8 && startCol + dist <= 8 && pathNEClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.NE),null));
+                        if (board.getPiece(new ChessPosition(startRow+dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol+dist)).getTeamColor() != color) {
+                            pathNEClear = false;
+                        }
                     }
-                    if (startRow + dist <= 8 && startCol - dist >= 1) {
+                    //NW
+                    if (startRow + dist <= 8 && startCol - dist >= 1 && board.getPiece(new ChessPosition(startRow+dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol-dist)).getTeamColor() == color) {
+                        pathNWClear = false;
+                    }
+                    if (startRow + dist <= 8 && startCol - dist >= 1 && pathNWClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.NW),null));
+                        if (board.getPiece(new ChessPosition(startRow+dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol-dist)).getTeamColor() != color) {
+                            pathNWClear = false;
+                        }
                     }
-                    if (startRow - dist >= 1 && startCol - dist >= 1) {
+                    //SW
+                    if (startRow - dist >= 1 && startCol - dist >= 1 && board.getPiece(new ChessPosition(startRow-dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol-dist)).getTeamColor() == color) {
+                        pathSWClear = false;
+                    }
+                    if (startRow - dist >= 1 && startCol - dist >= 1 && pathSWClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.SW),null));
+                        if (board.getPiece(new ChessPosition(startRow-dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol-dist)).getTeamColor() != color) {
+                            pathSWClear = false;
+                        }
                     }
-                    if (startRow - dist >= 1 && startCol + dist <= 8) {
+                    //SE
+                    if (startRow - dist >= 1 && startCol + dist <= 8 && board.getPiece(new ChessPosition(startRow-dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol+dist)).getTeamColor() == color) {
+                        pathSEClear = false;
+                    }
+                    if (startRow - dist >= 1 && startCol + dist <= 8 && pathSEClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.SE),null));
+                        if (board.getPiece(new ChessPosition(startRow-dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol+dist)).getTeamColor() != color) {
+                            pathSEClear = false;
+                        }
                     }
                 }
                 break;
             case ChessPiece.PieceType.ROOK:
                 for (int dist = 1; dist < 8; dist++) {
-                    if (startRow + dist <= 8) {
+                    //North
+                    if (startRow + dist <= 8 && board.getPiece(new ChessPosition(startRow+dist,startCol)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol)).getTeamColor() == color) {
+                        pathNorthClear = false;
+                    }
+                    if (startRow + dist <= 8 && pathNorthClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.north(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow+dist,startCol)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol)).getTeamColor() != color) {
+                            pathNorthClear = false;
+                        }
                     }
-                    if (startRow - dist >= 1) {
+                    //South
+                    if (startRow - dist >= 1 && board.getPiece(new ChessPosition(startRow-dist,startCol)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol)).getTeamColor() == color) {
+                        pathSouthClear = false;
+                    }
+                    if (startRow - dist >= 1 && pathSouthClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.south(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow-dist,startCol)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol)).getTeamColor() != color) {
+                            pathSouthClear = false;
+                        }
                     }
-                    if (startCol + dist <= 8) {
+                    //East
+                    if (startCol + dist <= 8 && board.getPiece(new ChessPosition(startRow,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow,startCol+dist)).getTeamColor() == color) {
+                        pathEastClear = false;
+                    }
+                    if (startCol + dist <= 8 && pathEastClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.east(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow,startCol+dist)).getTeamColor() != color) {
+                            pathEastClear = false;
+                        }
                     }
-                    if (startCol - dist >= 1) {
+                    //West
+                    if (startCol - dist >= 1 && board.getPiece(new ChessPosition(startRow,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow,startCol-dist)).getTeamColor() == color) {
+                        pathWestClear = false;
+                    }
+                    if (startCol - dist >= 1 && pathWestClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.west(position,dist),null));
+                        if (board.getPiece(new ChessPosition(startRow,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow,startCol-dist)).getTeamColor() != color) {
+                            pathWestClear = false;
+                        }
                     }
                 }
                 break;
             case ChessPiece.PieceType.BISHOP:
                 for (int dist = 1; dist < 8; dist++) {
-                    if (startRow + dist <= 8 && startCol + dist <= 8) {
+                    //NE
+                    if (startRow + dist <= 8 && startCol + dist <= 8 && board.getPiece(new ChessPosition(startRow+dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol+dist)).getTeamColor() == color) {
+                        pathNEClear = false;
+                    }
+                    if (startRow + dist <= 8 && startCol + dist <= 8 && pathNEClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.NE),null));
+                        if (board.getPiece(new ChessPosition(startRow+dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol+dist)).getTeamColor() != color) {
+                            pathNEClear = false;
+                        }
                     }
-                    if (startRow + dist <= 8 && startCol - dist >= 1) {
+                    //NW
+                    if (startRow + dist <= 8 && startCol - dist >= 1 && board.getPiece(new ChessPosition(startRow+dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol-dist)).getTeamColor() == color) {
+                        pathNWClear = false;
+                    }
+                    if (startRow + dist <= 8 && startCol - dist >= 1 && pathNWClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.NW),null));
+                        if (board.getPiece(new ChessPosition(startRow+dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow+dist,startCol-dist)).getTeamColor() != color) {
+                            pathNWClear = false;
+                        }
                     }
-                    if (startRow - dist >= 1 && startCol - dist >= 1) {
+                    //SW
+                    if (startRow - dist >= 1 && startCol - dist >= 1 && board.getPiece(new ChessPosition(startRow-dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol-dist)).getTeamColor() == color) {
+                        pathSWClear = false;
+                    }
+                    if (startRow - dist >= 1 && startCol - dist >= 1 && pathSWClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.SW),null));
+                        if (board.getPiece(new ChessPosition(startRow-dist,startCol-dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol-dist)).getTeamColor() != color) {
+                            pathSWClear = false;
+                        }
                     }
-                    if (startRow - dist >= 1 && startCol + dist <= 8) {
+                    //SE
+                    if (startRow - dist >= 1 && startCol + dist <= 8 && board.getPiece(new ChessPosition(startRow-dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol+dist)).getTeamColor() == color) {
+                        pathSEClear = false;
+                    }
+                    if (startRow - dist >= 1 && startCol + dist <= 8 && pathSEClear) {
                         list.add(new ChessMove(position,LegalMoveLibrary.diagonal(position,dist,LegalMoveLibrary.diagDir.SE),null));
+                        if (board.getPiece(new ChessPosition(startRow-dist,startCol+dist)) != null && board.getPiece(new ChessPosition(startRow-dist,startCol+dist)).getTeamColor() != color) {
+                            pathSEClear = false;
+                        }
                     }
                 }
                 break;
